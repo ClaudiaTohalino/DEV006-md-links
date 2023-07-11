@@ -1,10 +1,15 @@
 const mdLinks = require('../');
 
+const pathUser = "";
 
-describe('mdLinks', () => {
+describe("mdLinks", () => {
+  it("Deberia retornar una promesa que se resuelve con un array de objetos", (done) => {
+    const result = mdLinks(pathUser, options);
+    expect(result)
+      .resolves.toEqual([
+        {
 
-  it('should...', () => {
-    console.log('FIX ME!');
+        }
+      ]).then(done);
   });
-
 });
