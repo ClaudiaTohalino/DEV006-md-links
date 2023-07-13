@@ -1,7 +1,8 @@
 const path = require("path");
 const fs = require("fs");
+const { error } = require("console");
 const fetch = require("node-fetch").default;
-pathUser = process.argv[2]; // Obtener la ruta del usuario desde los argumentos de la línea de comandos
+//pathUser = process.argv[2]; // Obtener la ruta del usuario desde los argumentos de la línea de comandos
 
 // Función que verifica si una ruta de archivo o directorio existe
 const pathExists = (pathUser) => {
@@ -20,7 +21,8 @@ const convertToAbsolutePath = (pathUser) => {
     return pathUser; // Si la ruta es absoluta, retornarla sin cambios
   } else {
     // Si la ruta es relativa, convertirla a una ruta absoluta utilizando el directorio de trabajo actual (current working directory, cwd)
-    return path.resolve(process.cwd(), pathUser);
+    //return path.resolve(process.cwd(), pathUser);
+    return path.resolve(pathUser);
   }
 };
 
@@ -45,12 +47,15 @@ const readDir = (pathUser) => {
     if (stats.isDirectory()) {
       // Si la ruta es un directorio, se realiza una llamada recursiva a readDir para buscar archivos .md dentro de él
       mdFiles.push(...readDir(absoluteFilePath));
+    } else if (path.extname(file) === ".md") {
+
+      // Si la ruta es un archivo con extensión .md, se agrega al array mdFiles
+      mdFiles.push(absoluteFilePath);
+
     } else {
-      if (path.extname(file) === ".md") {
-        // Si la ruta es un archivo con extensión .md, se agrega al array mdFiles
-        mdFiles.push(absoluteFilePath);
-      }
+      return ("error de preuba " + error);
     }
+
   });
 
   return mdFiles; // Devolver el array de archivos .md encontrados

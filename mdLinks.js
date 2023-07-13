@@ -53,7 +53,7 @@ const mdLinks = (pathUser, options = { validate: false }) => {
         })
         .catch((error) => {
           // Si ocurre un error al leer el archivo .md, rechazar la promesa con el error
-          reject(error);
+          reject("No se puede leer un .md" + error);
         });
     });
 
@@ -65,7 +65,7 @@ const mdLinks = (pathUser, options = { validate: false }) => {
       })
       .catch((error) => {
         // Si ocurre un error al procesar los enlaces, rechazar la promesa con el error
-        reject(error);
+        reject("No se procesaron los enlaces" + error);
       });
   });
 };
